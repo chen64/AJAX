@@ -3,11 +3,10 @@ $(document).ready(function(){
     var topics = ["shrug", "salute", "wave"];
 
     $("#topicButtons").on("click", function(){
-        var topic = $(this).attr("data-topic");
+        var topic = $(this).data("topic");
         var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=6XPpgYRMRSDHJoXuZnglJscGARaX4Ge7&q=" +
         topic +"&limit=10&offset=0&rating=G&lang=en"
 
-        
         console.log(queryURL);
 
         $.ajax({
@@ -22,7 +21,7 @@ $(document).ready(function(){
                 var topicImage = $("<img>").addClass("gif");
                 topicImage.attr("src", results[i].images.fixed_height_still.url);
                 topicImage.attr("data-animate", results[i].images.fixed_height.url);
-                topicImage.attr("data-still", results[i].images.fixed_height.url);
+                topicImage.attr("data-still", results[i].images.fixed_height_still.url);
                 topicImage.attr("data-state", "still");
                 topicDiv.append(p);
                 topicDiv.append(topicImage);
